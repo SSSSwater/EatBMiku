@@ -226,14 +226,14 @@ function refreshGameLayer(box, loop, offset) {
         box.y = 0;
         box.style[transform] = 'translate3D(0,' + box.y + 'px,0)';
     }
-    box.style[transitionDuration] = '100ms';
+    box.style[transitionDuration] = '150ms';
 }
 
 function gameLayerMoveNextRow() {
     for (var i = 0; i < GameLayer.length; i++) {
         var g = GameLayer[i];
         g.y += blockSize;
-        if (g.y > blockSize * (Math.floor(g.children.length / 5))) {
+        if (g.y > blockSize * (Math.floor(g.children.length / 3))) {
             refreshGameLayer(g, 1, -1);
         } else {
             g.style[transform] = 'translate3D(0,' + g.y + 'px,0)';
@@ -273,7 +273,7 @@ function gameTapEvent(e) {
 
 function createGameLayer() {
     var html = '<div id="GameLayerBG">';
-    for (var i = 1; i <= 20; i++) {
+    for (var i = 1; i <= 2; i++) {
         var id = 'GameLayer' + i;
         html += '<div id="' + id + '" class="GameLayer">';
         for (var j = 0; j < 10; j++) {
