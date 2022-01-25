@@ -66,8 +66,8 @@ function _refreshSize() {
         for (var j = 0; j < box.children.length; j++) {
             var r = box.children[j],
                 rstyle = r.style;
-            rstyle.left = (j % 4) * blockSize + 'px';
-            rstyle.bottom = Math.floor(j / 4) * blockSize + 'px';
+            rstyle.left = (j % 5) * blockSize + 'px';
+            rstyle.bottom = Math.floor(j / 5) * blockSize + 'px';
             rstyle.width = blockSize + 'px';
             rstyle.height = blockSize + 'px';
         }
@@ -83,12 +83,12 @@ function _refreshSize() {
     var y = ((_gameBBListIndex) % 10) * blockSize;
     f.y = y;
     f.style[transform] = 'translate3D(0,' + f.y + 'px,0)';
-    a.y = -blockSize * Math.floor(f.children.length / 4) + y;
+    a.y = -blockSize * Math.floor(f.children.length / 5) + y;
     a.style[transform] = 'translate3D(0,' + a.y + 'px,0)';
 }
 
 function countBlockSize() {
-    blockSize = body.offsetWidth / 4;
+    blockSize = body.offsetWidth / 5;
     body.style.height = window.innerHeight + 'px';
     GameLayerBG.style.height = window.innerHeight + 'px';
     touchArea[0] = window.innerHeight - blockSize * 0;
@@ -191,23 +191,23 @@ var _ttreg = / t{1,2}(\d+)/,
     _clearttClsReg = / t{1,2}\d+| bad/;
 
 function refreshGameLayer(box, loop, offset) {
-    var i = Math.floor(Math.random() * 1000) % 4 + (loop ? 0 : 4);
+    var i = Math.floor(Math.random() * 1000) % 5 + (loop ? 0 : 5);
     for (var j = 0; j < box.children.length; j++) {
         var r = box.children[j],
             rstyle = r.style;
-        rstyle.left = (j % 4) * blockSize + 'px';
-        rstyle.bottom = Math.floor(j / 4) * blockSize + 'px';
+        rstyle.left = (j % 5) * blockSize + 'px';
+        rstyle.bottom = Math.floor(j / 5) * blockSize + 'px';
         rstyle.width = blockSize + 'px';
         rstyle.height = blockSize + 'px';
         r.className = r.className.replace(_clearttClsReg, '');
         if (i == j) {
             _gameBBList.push({
-                cell: i % 4,
+                cell: i % 5,
                 id: r.id
             });
             r.className += ' t' + (Math.floor(Math.random() * 1000) % 5 + 1);
             r.notEmpty = true;
-            i = (Math.floor(j / 4) + 1) * 4 + Math.floor(Math.random() * 1000) % 4;
+            i = (Math.floor(j / 5) + 1) * 5 + Math.floor(Math.random() * 1000) % 5;
         } else {
             r.notEmpty = false;
         }
@@ -215,7 +215,7 @@ function refreshGameLayer(box, loop, offset) {
     if (loop) {
         box.style.webkitTransitionDuration = '0ms';
         box.style.display = 'none';
-        box.y = -blockSize * (Math.floor(box.children.length / 4) + (offset || 0)) * loop;
+        box.y = -blockSize * (Math.floor(box.children.length / 5) + (offset || 0)) * loop;
         setTimeout(function () {
             box.style[transform] = 'translate3D(0,' + box.y + 'px,0)';
             setTimeout(function () {
@@ -233,7 +233,7 @@ function gameLayerMoveNextRow() {
     for (var i = 0; i < GameLayer.length; i++) {
         var g = GameLayer[i];
         g.y += blockSize;
-        if (g.y > blockSize * (Math.floor(g.children.length / 4))) {
+        if (g.y > blockSize * (Math.floor(g.children.length / 5))) {
             refreshGameLayer(g, 1, -1);
         } else {
             g.style[transform] = 'translate3D(0,' + g.y + 'px,0)';
@@ -253,7 +253,7 @@ function gameTapEvent(e) {
         return false;
     }
     if ((p.id == tar.id && tar.notEmpty) || (p.cell == 0 && x < blockSize) || (p.cell == 1 && x > blockSize && x < 2 *
-        blockSize) || (p.cell == 2 && x > 2 * blockSize && x < 3 * blockSize) || (p.cell == 3 && x > 3 * blockSize)) {
+        blockSize) || (p.cell == 2 && x > 2 * blockSize && x < 3 * blockSize) || (p.cell == 3 && x > 3 * blockSize)|| (p.cell == 4 && x > 4 * blockSize)) {
         if (!_gameStart) {
             gameStart();
         }
@@ -277,8 +277,8 @@ function createGameLayer() {
         var id = 'GameLayer' + i;
         html += '<div id="' + id + '" class="GameLayer">';
         for (var j = 0; j < 10; j++) {
-            for (var k = 0; k < 4; k++) {
-                html += '<div id="' + id + '-' + (k + j * 4) + '" num="' + (k + j * 4) + '" class="block' + (k ? ' bl' : '') +
+            for (var k = 0; k < 5; k++) {
+                html += '<div id="' + id + '-' + (k + j * 5) + '" num="' + (k + j * 5) + '" class="block' + (k ? ' bl' : '') +
                     '"></div>';
             }
         }
