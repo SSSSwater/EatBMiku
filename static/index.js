@@ -56,7 +56,7 @@ var refreshSizeTime;
 
 function refreshSize() {
     clearTimeout(refreshSizeTime);
-    refreshSizeTime = setTimeout(_refreshSize, 200);
+    refreshSizeTime = setTimeout(_refreshSize, 100);
 }
 
 function _refreshSize() {
@@ -341,11 +341,11 @@ function shareText(score) {
         return '倒计时多了' + ((deviation_time / 1000) - 20).toFixed(2) + "s";
     }
     SubmitResults();
-    if (score <= 49) return '试着好好练一下？';
-    if (score <= 99) return 'TCL';
-    if (score <= 149) return 'TQL';
-    if (score <= 199) return '您';
-    return '人？';
+    if (score <= 49) return '可能甚至不如fufu？';
+    if (score <= 99) return 'Miku来敲门了';
+    if (score <= 149) return '好好对待fufu哦';
+    if (score <= 199) return 'Miku吃你家大米了？';
+    return '真TM畜生啊（';
 }
 
 function toStr(obj) {
