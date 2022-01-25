@@ -233,7 +233,7 @@ function gameLayerMoveNextRow() {
     for (var i = 0; i < GameLayer.length; i++) {
         var g = GameLayer[i];
         g.y += blockSize;
-        if (g.y > blockSize * (Math.floor(g.children.length / 3))) {
+        if (g.y > blockSize * (Math.floor(g.children.length / 5))) {
             refreshGameLayer(g, 1, -1);
         } else {
             g.style[transform] = 'translate3D(0,' + g.y + 'px,0)';
