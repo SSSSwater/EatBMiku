@@ -92,7 +92,7 @@ function countBlockSize() {
     body.style.height = window.innerHeight + 'px';
     GameLayerBG.style.height = window.innerHeight + 'px';
     touchArea[0] = window.innerHeight - blockSize * 0;
-    touchArea[1] = window.innerHeight - blockSize * 3;
+    touchArea[1] = window.innerHeight - blockSize * 4;
 }
 var _gameBBList = [],
     _gameBBListIndex = 0,
@@ -122,7 +122,7 @@ function gameRestart() {
     _gameScore = 0;
     _gameOver = false;
     _gameStart = false;
-    _gameTimeNum = 20;
+    _gameTimeNum = 200;
     GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
     countBlockSize();
     refreshGameLayer(GameLayer[0]);
@@ -132,7 +132,7 @@ function gameRestart() {
 function gameStart() {
     _date1 = new Date();
     _gameStart = true;
-    _gameTime = setInterval(gameTime, 1000);
+    _gameTime = setInterval(gameTime, 100);
 }
 
 function gameOver() {
@@ -185,7 +185,7 @@ function gameTime() {
 }
 
 function creatTimeText(n) {
-    return '&nbsp;TIME:'+n;
+    return '&nbsp;TIME:'+n/10;
 }
 var _ttreg = / t{1,2}(\d+)/,
     _clearttClsReg = / t{1,2}\d+| bad/;
@@ -226,7 +226,7 @@ function refreshGameLayer(box, loop, offset) {
         box.y = 0;
         box.style[transform] = 'translate3D(0,' + box.y + 'px,0)';
     }
-    box.style[transitionDuration] = '150ms';
+    box.style[transitionDuration] = '100ms';
 }
 
 function gameLayerMoveNextRow() {
@@ -273,7 +273,7 @@ function gameTapEvent(e) {
 
 function createGameLayer() {
     var html = '<div id="GameLayerBG">';
-    for (var i = 1; i <= 2; i++) {
+    for (var i = 1; i <= 20; i++) {
         var id = 'GameLayer' + i;
         html += '<div id="' + id + '" class="GameLayer">';
         for (var j = 0; j < 10; j++) {
