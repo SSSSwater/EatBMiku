@@ -102,20 +102,20 @@ var _gameBBList = [],
     _gameTime, _gameTimeNum, _gameScore;
 function gameInit() {
     createjs.Sound.registerSound({
-        src: "./static/music/err.mp3",
+        src: "./music/err.mp3",
         id: "err"
     });
     createjs.Sound.registerSound({
-        src: "./static/music/end.mp3",
+        src: "./music/end.mp3",
         id: "end"
     });
     createjs.Sound.registerSound({
-        src: "./static/music/tap.mp3",
+        src: "./music/tap.mp3",
         id: "tap"
     });
     for(var j=1;j<17;j++){
         createjs.Sound.registerSound({
-            src: "./static/music/tap"+j.toString()+".mp3",
+            src: "./music/tap"+j.toString()+".mp3",
             id: "tap"+j.toString()
         });
     }
